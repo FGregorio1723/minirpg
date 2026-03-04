@@ -48,7 +48,7 @@ public abstract class Personagem {
             hpAtual = 0;
             
         System.out.println(this.nome + " Recebeu " + dano + "de dano! [HP: "
-            + this.hpAtual + "/" + this.hpMaximo + "]");
+            + this.hpMaximo + "/" + this.hpAtual + "]");
     } 
 
     public boolean estaVivo() {
@@ -56,7 +56,13 @@ public abstract class Personagem {
     }
 
     public void exibirStatus(){
-        
+        System.out.println("========================");
+        System.out.println("Nome: " + this.nome);
+        System.out.println("Nível: " + this.nivel + " Experiência :" + this.experiencia);
+        System.out.println("[HP: " + hpMaximo + "/" + hpAtual + "]");
+        System.out.println("Força: " + this.forca);
+        System.out.println("Agilidade: " + this.agilidade);
+        System.out.println("========================");
     }
 
 }
