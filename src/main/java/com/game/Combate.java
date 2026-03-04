@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Combate {
     private Personagem jogador;
     private Personagem inimigo;
-
     private Scanner scanner;
     private Random random;
     private int turno = 1;
@@ -16,43 +15,34 @@ public class Combate {
         this.scanner = new Scanner(System.in);
         this.random = new Random();
         this.turno = 1;
-
     }
-    public boolean iniciar(){
+    
+    public boolean iniciar() {
         while (jogador.estaVivo() && inimigo.estaVivo()) { 
-            System.out.println(turno);
-            if ((this.jogador.agilidade) > (this.inimigo.agilidade)) {
+            System.out.println("=== TURNO " + turno + " ===");
+            
+            if (jogador.agilidade > inimigo.agilidade) {
                 jogador.atacar(inimigo);
+                if (!inimigo.estaVivo()) {
+                    break;
+                }
                 inimigo.atacar(jogador);
-            }else {
+                if (!jogador.estaVivo()) {
+                    break;
+                }
+                turno++;
+            } else {
                 inimigo.atacar(jogador);
+                if (!jogador.estaVivo()) {
+                    break;
+                }
                 jogador.atacar(inimigo);
+                if (!inimigo.estaVivo()) {
+                    break;
+                }
+                turno++;
             }
-        
-         turno ++;   
         }
+        return jogador.estaVivo();
     }
-
-
 }
-
-
-
-
-
-
-
-
-//jogador e inimigo são os protagonistas da luta
-//Eles têm métodos (atacar(), receberDano()) que fazem tudo acontecer
-//A classe Combate só orquestra quem age quando
-//scanner permite interação com o jogador
-//random adiciona imprevisibilidade
-//turno dá contexto visual
-
-// Controlar a ordem dos turnos
-// Verificar quem ataca primeiro
-// Aplicar dano e verificar mortes
-// Determinar vencedor
-// Dar recompensa (XP) ao vencedor
-// Tratar fugas (opcional)
