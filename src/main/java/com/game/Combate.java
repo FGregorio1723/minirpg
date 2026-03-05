@@ -45,4 +45,10 @@ public class Combate {
         }
         return jogador.estaVivo();
     }
+    private void turnoJogador(){
+        System.out.println();
+        System.out.println();        
+        System.out.println();
+        int escolha = scanner.nextInt();
+    }   
 }
