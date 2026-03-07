@@ -18,7 +18,35 @@ public class Combate {
         this.turno = 1;
     }
 
+    public boolean maisAgil () {
+
+        return jogador.agilidade > inimigo.agilidade;
+
+    }
     
+    public boolean tentarFugir (){
+        int chance;
+
+        if (maisAgil()) {
+            chance = 75;
+        } else {
+            chance = 50;
+        }
+
+        int rolagem = random.nextInt(100) + 1;
+         
+        if (rolagem <= chance) {
+
+            System.out.println(jogador.nome + " Conseguiu fugir! ");
+            return true;
+
+        }else {
+
+            return false;
+
+        }
+
+    }
     public boolean iniciar() {
         while (jogador.estaVivo() && inimigo.estaVivo()) { 
 
@@ -28,53 +56,49 @@ public class Combate {
             System.out.println("2. Itens ");
             System.out.println("3. Fugir ");   
 
-            boolean agiu = false;         
+            boolean agiu = false;  
+
             int opcao = scanner.nextInt();
 
             switch (opcao) {
-                case 1:
-                    if(jogador.agilidade > inimigo.agilidade) {
+                case(1):
+                    if (maisAgil()) {
 
-                        System.out.println("Turno de " + jogador.nome);
                         jogador.atacar(inimigo);
+                        agiu = true;
 
-                        if (!inimigo.estaVivo()) {
-                            System.out.println(inimigo.nome + "Foi Derrotado. ");
-                        }else{
-                            System.out.println("Turno de " + inimigo.nome);
+                        if (inimigo.estaVivo()) {
+
                             inimigo.atacar(jogador);
                         }
-                    
 
-                    if (!jogador.estaVivo()) {
-                        System.out.println(jogador.nome + "Morreu!");
-                        }
-
-                    }else{
+                    }else {
 
                         inimigo.atacar(jogador);
+                        agiu = true;
 
-                        if (!jogador.estaVivo()) {
-                            System.out.println(jogador.nome + "Morreu!");   
-                        }else{
-                            System.out.println("Turno de " + jogador.nome);
+                        if (jogador.estaVivo()) {
+
                             jogador.atacar(inimigo);
                         }
-                    
-
+                        
                     }
-                    agiu = true;
+            
                     break;
 
                 case 2:
+
                     System.out.println("Menu não está pronto");
                     break;
                 
                 case 3:
+
                     boolean fugiu = tentarFugir();
                     if (fugiu){
+
                         return false;
                     }
+
                     agiu = true;
                     break;
 
