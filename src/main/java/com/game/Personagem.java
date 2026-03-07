@@ -41,7 +41,7 @@ public abstract class Personagem {
         alvo.receberDano(danoBase);
     }
     
-    public void receberDano(int dano) {
+    public void receberDano(int dano) { //-> metodo para receber o dano
         this.hpAtual -= dano;
 
         if (this.hpAtual < 0) 
@@ -55,7 +55,7 @@ public abstract class Personagem {
         return hpAtual > 0;
     }
 
-    public void exibirStatus(){ //-> Exibi status
+    public void exibirStatus(){ //-> Exibir status
         System.out.println("========================");
         System.out.println("Nome: " + this.nome);
         System.out.println("Nível: " + this.nivel + " Experiência :" + this.experiencia);
