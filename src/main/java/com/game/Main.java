@@ -18,6 +18,7 @@ public class Main {
         // Resultado
         if (venceu) {
             System.out.println("\n🏆 PARABÉNS! Você venceu!");
+            
             heroi.exibirStatus();
         } else {
             System.out.println("\n💀 GAME OVER!");

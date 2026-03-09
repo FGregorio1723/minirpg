@@ -52,8 +52,7 @@ public abstract class Personagem {
         if (this.hpAtual < 0) 
             hpAtual = 0;
             
-        System.out.println(this.nome + " Recebeu " + dano + "de dano! [HP: "
-            + this.hpMaximo + "/" + this.hpAtual + "]");
+        System.out.println(this.nome + " [HP: " + this.hpAtual + "/" + this.hpMaximo + "]");
             
     } 
 
@@ -68,7 +67,7 @@ public abstract class Personagem {
         System.out.println("========================");
         System.out.println("Nome: " + this.nome);
         System.out.println("Nível: " + this.nivel + " Experiência :" + this.experiencia);
-        System.out.println("[HP: " + hpMaximo + "/" + hpAtual + "]");
+        System.out.println("[HP: " + hpAtual + "/" + hpMaximo + "]");
         System.out.println("Força: " + this.forca);
         System.out.println("Agilidade: " + this.agilidade);
         System.out.println("========================");

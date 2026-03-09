@@ -8,6 +8,7 @@ public class Combate {
     private Scanner scanner;
     private Random random;
     private int turno = 1;
+    private boolean tentouFugir = false;
   
 
     public Combate(Personagem jogador, Personagem inimigo) {
@@ -16,6 +17,7 @@ public class Combate {
         this.scanner = new Scanner(System.in);
         this.random = new Random();
         this.turno = 1;
+        this.tentouFugir = false;
     }
 
     public boolean maisAgil () {
@@ -27,6 +29,13 @@ public class Combate {
     public boolean tentarFugir (){
         int chance;
 
+        if (tentouFugir) {
+            System.out.println(" Somente uma tentativa por turno");
+            return false;
+        }
+
+        tentouFugir = true;
+
         if (maisAgil()) {
             chance = 75;
         } else {
@@ -35,13 +44,15 @@ public class Combate {
 
         int rolagem = random.nextInt(100) + 1;
          
+
         if (rolagem <= chance) {
 
             System.out.println(jogador.nome + " Conseguiu fugir! ");
             return true;
 
         }else {
-
+            tentouFugir = true;
+            System.out.println(jogador.nome + " Não conseguiu fugir");
             return false;
 
         }
@@ -50,6 +61,7 @@ public class Combate {
     public boolean iniciar() {
         while (jogador.estaVivo() && inimigo.estaVivo()) { 
 
+            System.out.println("=====" + "Turno: " + turno + "====" );
 
             System.out.println("O que você gostaria de fazer?");
             System.out.println("1. Atacar ");            
@@ -65,7 +77,7 @@ public class Combate {
                     if (maisAgil()) {
 
                         jogador.atacar(inimigo);
-                        agiu = true;
+                        turno ++;
 
                         if (inimigo.estaVivo()) {
 
@@ -75,7 +87,7 @@ public class Combate {
                     }else {
 
                         inimigo.atacar(jogador);
-                        agiu = true;
+                        turno ++;
 
                         if (jogador.estaVivo()) {
 
@@ -97,9 +109,9 @@ public class Combate {
                     if (fugiu){
 
                         return false;
+
                     }
 
-                    agiu = true;
                     break;
 
             }
