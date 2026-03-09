@@ -30,7 +30,7 @@ public class Combate {
         int chance;
 
         if (tentouFugir) {
-            System.out.println(" Somente uma tentativa por turno");
+            System.out.println(" Somente uma tentativa de fuga por turno");
             return false;
         }
 
@@ -78,6 +78,7 @@ public class Combate {
 
                         jogador.atacar(inimigo);
                         turno ++;
+                        tentouFugir = false;
 
                         if (inimigo.estaVivo()) {
 
@@ -88,6 +89,7 @@ public class Combate {
 
                         inimigo.atacar(jogador);
                         turno ++;
+                        tentouFugir = false;
 
                         if (jogador.estaVivo()) {
 
